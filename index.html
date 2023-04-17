@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jonah Chapter 2 Vocabulary Flashcards</title>
+  <style>
+    /* Flex container for flashcards */
+    #flashcardContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    /* Flashcards */
+    .flashcard {
+      width: calc(25% - 20px); /* Width adjusted to fit four flashcards per line with 20px margin between */
+      margin: 10px;
+      border: 1px solid #000;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    /* Hebrew word */
+    .hebrewWord {
+      font-size: 2em;
+    }
+
+    /* English word */
+    .englishWord {
+      font-size: 1em;
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+  <h1>Jonah Chapter 2 Vocabulary Flashcards</h1>
+  <div id="flashcardContainer">
+    <!-- Flashcards will be dynamically generated here -->
+  </div>
+
+  <script>
+    // Array of flashcards
+    const flashcards = [
+  { hebrewWord: 'וַיִּתְפַּלֵּל', englishTranslation: 'prayed' },
+  { hebrewWord: 'יוֹנָה', englishTranslation: 'Jonah' },
+  { hebrewWord: 'אֶל־יְהוָ֔ה', englishTranslation: 'to the LORD' },
+  { hebrewWord: 'אֱלֹהָ֖י', englishTranslation: 'his God' },
+  { hebrewWord: 'מִמְּעֵ֣י', englishTranslation: 'from the belly' },
+  { hebrewWord: 'הַדָּגָ֑ה', englishTranslation: 'of the fish' },
+  { hebrewWord: 'וַיַּעֲנֵ֣נִי', englishTranslation: 'and he answered me' },
+  { hebrewWord: 'קוֹרְבַ֤ת', englishTranslation: 'the closeness' },
+  { hebrewWord: 'שְׁאוֹל֙', englishTranslation: 'of Sheol' },
+  { hebrewWord: 'פָּנָ֣יִךְ', englishTranslation: 'Your face' },
+  { hebrewWord: 'נָתַ֔תִּי', englishTranslation: 'You have given me' },
+  { hebrewWord: 'לְנֵ֖צַח', englishTranslation: 'forever' },
+  { hebrewWord: 'וְאַתָּ֥ה', englishTranslation: 'But You' },
+  { hebrewWord: 'בָּתוּלַ֖ת', englishTranslation: 'O virgin' },
+  { hebrewWord: 'יִשְׂרָאֵֽל׃', englishTranslation: 'of Israel.' },
+  { hebrewWord: 'וַיַּסְתִּ֧ירֵנִי', englishTranslation: 'And You hid me' },
+  { hebrewWord: 'מַֽיִם׃', englishTranslation: 'the waters.' },
+  { hebrewWord: 'לְנַפְשִׁ֥י', englishTranslation: 'for my soul' },
+  { hebrewWord: 'תָג֥וֹרְתִ֔י', englishTranslation: 'I sank' },
+  { hebrewWord: 'תַ֖הַת', englishTranslation: 'into the depths' },
+  { hebrewWord: 'בִּלְבָבִ֑י', englishTranslation: 'I came' },
+  { hebrewWord: 'אָרְחֲךָ֣', englishTranslation: 'around your holy temple.' },
+  { hebrewWord: 'וּבִֽית־הַקֹּ֔דֶשׁ׃', englishTranslation: 'The waters' },
+  { hebrewWord: 'בָּ֛אוּ', englishTranslation: 'surrounded me'},
+  { hebrewWord: 'לְנַפְשִׁ֥י', englishTranslation: 'to my soul' },
+  { hebrewWord: 'הַתְּהוֹם֙', englishTranslation: 'the deep' },
+  { hebrewWord: 'יִקְפְּצ֗וּנִי', englishTranslation: 'congealed' },
+  { hebrewWord: 'עַל־רֹאשִֽׁי׃', englishTranslation: 'around my head.' },
+  { hebrewWord: 'וַיֶּ֣חְסָר', englishTranslation: 'The seaweed' },
+  { hebrewWord: 'יְצוּרַ֔י', englishTranslation: 'wrapped around me' },
+  { hebrewWord: 'שֹׁרְשֵׁ֥י הָרִ֖ים', englishTranslation: 'the roots of the mountains' },
+  { hebrewWord: 'יָרַ֣דְתִּי', englishTranslation: 'I went down' },
+  { hebrewWord: 'אָֽרֶץ', englishTranslation: 'to the land' },
+  { hebrewWord: 'בְּרִחֲבֵ֣י', englishTranslation: 'whose bars' },
+  { hebrewWord: 'עוֹלָ֔ם', englishTranslation: 'are forever' },
+  { hebrewWord: 'וַתַּעֲלֵ֥נִי', englishTranslation: 'But You brought up' },
+  { hebrewWord: 'מִשַּׁחְתָּ֖הּ', englishTranslation: 'my life' },
+  { hebrewWord: 'יְהוָ֥ה', englishTranslation: 'O LORD' },
+  { hebrewWord: 'אֱלֹהָֽי׃', englishTranslation: 'my God.' },
+  { hebrewWord: 'בְּהָתֵ֣ת', englishTranslation: 'When my soul' },
+  { hebrewWord: 'בִּ֖י', englishTranslation: 'fainted' },
+  { hebrewWord: 'אָ֑נִי', englishTranslation: 'within me,' },
+  { hebrewWord: 'זָכַ֚רְתִּי', englishTranslation: 'I remembered' },
+  { hebrewWord: 'אֶת־יְהוָ֔ה', englishTranslation: 'the LORD' },
+  { hebrewWord: 'וַתָּב֣וֹא', englishTranslation: 'And my prayer' },
+  { hebrewWord: 'אֵלֶ֔יךָ', englishTranslation: 'came to You,' },
+  { hebrewWord: 'אֶל־הֵיכַ֥ל קָדְשֶֽׁךָ׃', englishTranslation: 'to Your holy temple.' },
+  { hebrewWord: 'שֹׁמְרֵ֖י שָֽׁוְא׃', englishTranslation: 'Those who regard vain idols' },
+  { hebrewWord: 'חַסְדָּֽם', englishTranslation: 'forsake their faithfulness' },
+  { hebrewWord: 'וַאֲנִ֤י', englishTranslation: 'But I' },
+  { hebrewWord: 'בְקוֹל֙ תּוֹדָ֔ה', englishTranslation: 'will sacrifice to You' },
+  { hebrewWord: 'אֲנִ֖י', englishTranslation: 'with the voice of thanksgiving;' },
+  { hebrewWord: 'אֲשֶׁ֣ר נָדַ֑רְתִּי', englishTranslation: 'I will fulfill' },
+  { hebrewWord: 'אֲשֶׁ֥ר דִּבַּ֖רְתִּי', englishTranslation: 'what I have vowed.' },
+  { hebrewWord: 'יְשׁוּעָֽתְךָ֖', englishTranslation: 'Salvation is from the LORD!' },
+  { hebrewWord: 'וַיְצַ֣ו יְהוָה֮ לִדְגּ֤וֹן֙', englishTranslation: 'Then the LORD commanded the fish,' },
+  { hebrewWord: 'וַתַּקְאֵ֥הוּ', englishTranslation: 'and it vomited Jonah' },
+  { hebrewWord: 'אֶל־הַיַּבָּשָֽׁה׃', englishTranslation: 'onto the dry land.' }
+];
+
+
+
+
+    // Get HTML elements
+    const flashcardsContainer = document.getElementById('flashcardContainer');
+
+    // Function to generate flashcards
+    function generateFlashcards() {
+      flashcardsContainer.innerHTML = ''; // Clear existing flashcards
+
+      flashcards.forEach((flashcard, index) => {
+        const flashcardEl = document.createElement('div');
+        flashcardEl.classList.add('flashcard');
+        flashcardEl.innerHTML = `
+          <p class="hebrewWord">? <span>${flashcard.hebrewWord}</span></p>
+          <p class="englishWord" id="englishWord_${index}">English: <span>${flashcard.englishTranslation}</span></p>
+          <button class="showAnswerBtn" id="showAnswerBtn_${index}">Show Answer</button>
+          <button class="hideAnswerBtn" id="hideAnswerBtn_${index}">Hide Answer</button>
+        `;
+        flashcardsContainer.appendChild(flashcardEl);
+
+        // Add event listeners for show/hide buttons
+        const showAnswerBtn = document.getElementById(`showAnswerBtn_${index}`);
+        const hideAnswerBtn = document.getElementById(`hideAnswerBtn_${index}`);
+
+        showAnswerBtn.addEventListener('click', () => {
+          const englishWord = document.getElementById(`englishWord_${index}`);
+          englishWord.style.visibility = 'visible';
+        });
+
+        hideAnswerBtn.addEventListener('click', () => {
+          const englishWord = document.getElementById(`englishWord_${index}`);
+          englishWord.style.visibility = 'hidden';
+        });
+      });
+    }
+
+    // Generate flashcards on page load
+    generateFlashcards();
+  </script>
+</body>
+</html>
